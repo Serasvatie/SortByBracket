@@ -31,11 +31,10 @@ namespace SortByBracket.ViewModel
                 if (checkException(input[i]) == 0)
                 {
                     string author = getBracket(input[i]);
-                    Console.WriteLine(author);
                     if (author != "")
                         moveDirectory(input[i], author);
                 }
-                backgroundWorker.ReportProgress((i * 100) / input.Length);
+                backgroundWorker.ReportProgress((i * 100) / input.Length - 1);
                 output = Directory.GetDirectories(model.Output);
                 input = Directory.GetDirectories(model.Input);
             }
@@ -44,26 +43,29 @@ namespace SortByBracket.ViewModel
         private void moveDirectory(string p, string author)
         {
             bool toMove = false;
-            string tmp = Path.GetDirectoryName(p);
-            for (int i = 0; i < output.Length; i++)
+            int i = 0;
+            while (i < output.Length)
             {
-                if (tmp == author)
+                if (Path.GetFileName(output[i]) == author)
                 {
                     toMove = true;
                     break;
                 }
+                i++;
             }
             if (toMove == false)
             {
-                Directory.CreateDirectory(author);
+                Directory.CreateDirectory(model.Output + '\\' + author);
+                Directory.Move(p, model.Output + "\\" + author + "\\" + Path.GetFileName(p));
             }
-            Directory.Move(p, author);
+            else
+                Directory.Move(p, output[i] + "\\" + Path.GetFileName(p));
         }
 
         private string getBracket(string p)
         {
-            string tmp = Path.GetDirectoryName(p);
-            return Regex.Match(tmp, @"\[([^)]*)\]").Value;
+            string tmp = Path.GetFileName(p);
+            return Regex.Match(tmp, @"(?<=\[)(.*?)(?=\])").Value;
         }
 
         private int checkException(string p)
