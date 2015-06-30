@@ -42,12 +42,13 @@ namespace SortByBracket.ViewModel
             {
                 if (sort == null)
                     sort = new RelayCommand(() => DoSort(), () => CanSort());
-                    return sort;
+                return sort;
             }
         }
 
         private bool CanSort()
         {
+
             return !isSorting;
         }
 
@@ -59,6 +60,7 @@ namespace SortByBracket.ViewModel
             bw.RunWorkerCompleted += bw_RunWorkerCompleted;
             bw.WorkerReportsProgress = true;
             bw.RunWorkerAsync();
+
         }
 
         public int Percentage
@@ -88,9 +90,15 @@ namespace SortByBracket.ViewModel
 
         void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            isSorting = true;
-            SortingFactory sf = new SortingFactory(model, sender as BackgroundWorker);
-            sf.DoSort();
+            try
+            {
+                isSorting = true;
+                SortingFactory sf = new SortingFactory(model, sender as BackgroundWorker);
+                sf.DoSort();
+            } catch (Exception me)
+            {
+                MessageBox.Show(me.Message);
+            }
         }
 
         public ICommand BrowserInput
@@ -128,7 +136,7 @@ namespace SortByBracket.ViewModel
             fbd.ShowDialog();
             OutputDir = fbd.SelectedPath;
         }
-        
+
         public ICommand Add
         {
             get

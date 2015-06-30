@@ -65,7 +65,7 @@ namespace SortByBracket.ViewModel
         private string getBracket(string p)
         {
             string tmp = Path.GetFileName(p);
-            return Regex.Match(tmp, @"(?<=\[)(.*?)(?=\])").Value;
+            return Regex.Match(tmp, @"(?<=\[)(.*?)(?=\])").Groups[0].Value;
         }
 
         private int checkException(string p)
