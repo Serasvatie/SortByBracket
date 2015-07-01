@@ -1,21 +1,21 @@
 ﻿<Window x:Class="SortByBracket.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="SortByBranket" Height="350" Width="525">
+        Title="SortByBranket" Height="350" Width="525" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="350"/>
             <ColumnDefinition Width="167"/>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding InputDir, Mode=TwoWay}"/>
-        <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding OutputDir, Mode=TwoWay}"/>
-        <Button Grid.Row="0" Grid.Column="1" Command="{Binding BrowserInput}" Content="Browse Input"/>
-        <Button Grid.Row="1" Grid.Column="1" Command="{Binding BrowserOutput}" Content="Browse Output"/>
+        <TextBox Grid.Row="0" Grid.Column="0" Text="{Binding InputDir, Mode=TwoWay}" Margin="10"/>
+        <TextBox Grid.Column="0" Grid.Row="1" Text="{Binding OutputDir, Mode=TwoWay}" Margin="10"/>
+        <Button Grid.Row="0" Grid.Column="1" Command="{Binding BrowserInput}" Content="Browse Input" Margin="10"/>
+        <Button Grid.Row="1" Grid.Column="1" Command="{Binding BrowserOutput}" Content="Browse Output" Margin="10"/>
         <ListView x:Name="ListException" Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ListException}" SelectedIndex="{Binding SelectedIndex}">
             <ListView.View>
                 <GridView>
@@ -28,17 +28,17 @@
         </ListView>
         <Grid Grid.Row="2" Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
+                <RowDefinition Height="0.2*"/>
             </Grid.RowDefinitions>
-            <TextBox  Grid.Row="0" Text="{Binding WordsToAdd}"/>
-            <Button Grid.Row="1" Content="Add" Command="{Binding Add}"/>
-            <Button Grid.Row="2" Content="Remove" Command="{Binding Remove}"/>
-            <Button Grid.Row="3" Content="Sort" Command="{Binding Sort}"/>
-            <ProgressBar Grid.Row="4" Maximum="100" Minimum="0" Value="{Binding Percentage}"/>
+            <TextBox  Grid.Row="0" Text="{Binding WordsToAdd}" Margin="10"/>
+            <Button Grid.Row="1" Content="Add" Command="{Binding Add}" Margin="10"/>
+            <Button Grid.Row="2" Content="Remove" Command="{Binding Remove}" Margin="10"/>
+            <Button Grid.Row="3" Content="Sort" Command="{Binding Sort}" Margin="10"/>
+            <ProgressBar Grid.Row="4" Maximum="100" Minimum="0" Value="{Binding Percentage}" Margin="10"/>
         </Grid>
     </Grid>
 </Window>
