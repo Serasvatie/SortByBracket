@@ -36,8 +36,15 @@ namespace SortByBracket.ViewModel
                 }
                 backgroundWorker.ReportProgress((i * 100) / input.Length - 1);
                 output = Directory.GetDirectories(model.Output);
-                input = Directory.GetDirectories(model.Input);
+                if (model.Output == model.Input)
+                {
+                    int save = input.Length;
+                    input = Directory.GetDirectories(model.Input);
+                    if (save != input.Length)
+                        i = 0;
+                }
             }
+            backgroundWorker.ReportProgress(100);
         }
 
         private void moveDirectory(string p, string author)

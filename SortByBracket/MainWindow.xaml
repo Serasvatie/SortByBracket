@@ -19,7 +19,7 @@
         <ListView x:Name="ListException" Grid.Column="0" Grid.Row="2" ItemsSource="{Binding ListException}" SelectedIndex="{Binding SelectedIndex}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="Auto">
+                    <GridViewColumn Width="330">
                         <GridViewColumnHeader Tag="Words Exception">Words Exception</GridViewColumnHeader>
                     </GridViewColumn>
                 </GridView>
